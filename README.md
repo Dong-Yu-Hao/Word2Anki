@@ -1,15 +1,14 @@
 # Word2Anki
->这几乎是最好的语言学习方式。如果不是，我倒想试试你的。
+>在背诵与阅读的过渡中，这是我能找到的最好方式；如果不是，我想试试你的。😂
 
 ## 为什么要做Word2Anki？
-在漫漫语言学习路上，我一直没有放弃对效率的追求。我们在学校中接受的教育是，学语言就是要把单词、语法和语用都背下来，这套方法确实可以应付考试与一部分生活场景，但是就如许多人一样，当有人问出 "How are you？" 之后，你却只能回答 "I'm fine, Thank you."。学习的目的是为了让我们处理我们从未见过的情景，但背诵只能让我们应对有限的情景。
-直到某天我接触到了新的学习理论，一个是来源于[ Yjango ](https://space.bilibili.com/344849038)的[《背多少单词才会说英语？5000 还不够吗？【学习观 | 问与答02】》](https://www.bilibili.com/video/BV1GV411S7Cb/)，另一个是[ 罗肖尼Shawney ](https://space.bilibili.com/323794482)的[《【高能干货】这个视频将会颠覆你对英语学习的认知——总述·阅读篇》](https://www.bilibili.com/video/BV1aD4y127GE/)。这两个视频总结后能够得出一个理论，语言学习需要在***正确情景***下多看***难度适度***的***句子***。
-问题是市面上几乎不存在这样的产品，有些软件会给出例句，但同时也会给出无法消去的中文，这就是无法满足情景的要求。看原著能够获得正确的情景，但难度会过高过低，无法控制。而传统的背单词软件最大的问题就是他是在背单词，而不是在学英语。所以为了解决以上问题，我开发了Word2Anki，希望用我稚嫩的技术解决这些问题。
+在漫漫语言学习路上，我希望找到真正有效的途径。我们在学校中接受的教育是，学语言就是要把单词、语法和语用都背下来，这套方法确实可以应付考试与一部分生活场景，但是就如许多人一样，当有人问出 "How are you？" 之后，你却只能回答 "I'm fine, Thank you."。学习的目的是为了让我们处理我们从未见过的情景，但背诵只能让我们应对有限的情景。
+直到某天我接触到了新的学习理论，一个是来源于 Yjango 的《背多少单词才会说英语？5000 还不够吗？【学习观 | 问与答02】》，另一个是 罗肖尼Shawney 的《【高能干货】这个视频将会颠覆你对英语学习的认知——总述·阅读篇》与【罗肖尼】如何永远学会一个单词？。这些视频总结后能够得出一个理论，语言学习需要在正确情景下多看难度适度的句子。
+问题是市面上几乎不存在这样的产品，有些软件会给出例句，但同时也会给出无法消去的中文，这就是无法满足情景的要求。而传统的背单词软件最大的问题就是他是在背单词，而不是在学英语。所以为了解决以上问题，我开发了Word2Anki，希望用我稚嫩的技术解决这些问题。
 
 ## Word2Anki 是什么？
-Word2Anki 是一个自动为单词附加释义、例句的工具。W2A 会根据你的语言能力使用 GPT 为每一个单词附加一个源语言释义与几个源语言例句。能够同时满足「可理解性输入假说」与「学习观」的理论。经过实测，学习效率确实有了极大的提升。比如说学完当天我去看电影，当主人公沉入水中时，我脑海中思考使用的是英文"Sank"而不是中文。
-
-Word2Anki 会 生成 Markdown 格式的表格。
+Word2Anki 是一个自动为单词附加释义、例句的工具。Word2Anki 会 生成 Markdown 格式的表格。W2A 会根据你的语言能力使用 GPT 为每一个单词附加一个源语言释义与几个源语言例句。能够同时满足「可理解性输入假说」与「学习观」的理论。
+- Word2Anki 不止可以辅助英语词汇，您可以在其中选择
 | Word        | Definition                                              | Example Sentences                                                                                                 |
 |-------------|---------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | Consecutive | Following in order without interruption                 | 1. The team won five consecutive games.<br>2. They have lived in the same house for five consecutive years.<br>3. Mary got three consecutive A's on her tests.<br>4. There were three consecutive days of rain.<br> |
@@ -31,22 +30,8 @@ openai.api_key = "<API-KEY>" #不管是第三方还是官方的 API KEY 都输�
 #如果你用的是官方API就把此行删掉或者注释掉, 如果是第三方就填写第三方的服务端点，比如API2D的服务端点就是：https://openai.api2d.net/v1
 openai.api_base = "<服务端点>" 
 ```
-3.3. 非必须，如果您需要转制非英语的单词，可以把Prompts通过GPT翻译为其他语言。翻译完成后要按照格式正确放回。
-```markdown
-prompts = As a professional flashcard maker, your task is to create a set of flashcards based on the words provided. The format for each card should be a markdown table with three columns: word, definition, and example sentences. Each card should contain one word, its definition, and {num_example} example sentences. Please ensure that each word is included in the set and that there is only one flashcard per word. Keep the flashcards simple and clear, with definitions and example sentences that are understandable for someone with a vocabulary of {difficulty} words. For clarity, please number each example sentence and separate them using <br>. Use this format for each card: | Word | Definition | Example Sentences | |------|------------|------------------| | | | 1.<br>2.<br>3.<br>4.<br>| Please note that you have flexibility in how you present the information within these guidelines.Please do not have any text outside of the table.
-words:
-```
-3.4. 在text中填入您需要制卡的单词，随后运行此脚本即可。脚本会自动在同文件夹内生成一个 output.txt 用来存储每次产生的表格。虽然没有设计多线程，但您可以使用spread_words.py将单词分成多份,例如将5000词分成10份500词。然后复制多份脚本，为每一份脚本修改其中的output.txt命名，就可以简陋地多线程运行。
-```python
-# 原有的命名，每个脚本中有两处，都需要修改
-file = open("output.txt", "w")
-file = open('output.txt', 'a')
-
-# 修改后的命名，你需要为每一份脚本设置一个不同的命名，不能重复。
-file = open("output1.txt", "w")
-file = open('output1.txt', 'a')
-```
-3.5. 制作中止了怎么办？由于不明机制，使用API时会储存原有的所有问答，您只需要重启脚本就能重新获得所有的内容。不会消耗Token。
+～3.3. 非必须，如果您需要转制非英语的单词，可以把Prompts通过GPT翻译为其他语言。翻译完成后要按照格式正确放回。～
+3.3 现在已经支持自动翻译。
 
 ### 4.转换表格
 脚本结束运行后，所有内容会以Markdown表格的形式储存在 output.txt 文件中，您可以输入至Notion一类Markdown编辑器中，然后将表格复制到 Excel 或 Numbers 中，将表格排序，删除掉所有表头，如有需要也可以用表格自带的功能[去掉所有相同项目](https://support.microsoft.com/zh-cn/office/%E7%AD%9B%E9%80%89%E5%94%AF%E4%B8%80%E5%80%BC%E6%88%96%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E5%80%BC-ccf664b0-81d6-449b-bbe1-8daaec1e83c2)。最后导出为CSV表格即可输入AnkiCard。
