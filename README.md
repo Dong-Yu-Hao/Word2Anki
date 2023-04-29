@@ -9,6 +9,7 @@
 ## Word2Anki 是什么？
 Word2Anki 是一个自动为单词附加释义、例句的工具。Word2Anki 会 生成 Markdown 格式的表格。W2A 会根据你的语言能力使用 GPT 为每一个单词附加一个源语言释义与几个源语言例句。能够同时满足「可理解性输入假说」与「学习观」的理论。
 - Word2Anki 不止可以辅助英语词汇，您可以在其中选择
+
 | Word        | Definition                                              | Example Sentences                                                                                                 |
 |-------------|---------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | Consecutive | Following in order without interruption                 | 1. The team won five consecutive games.<br>2. They have lived in the same house for five consecutive years.<br>3. Mary got three consecutive A's on her tests.<br>4. There were three consecutive days of rain.<br> |
